@@ -1,0 +1,12 @@
+{
+  "name": "build-Q44",
+  "version": "9.4.0",
+  "build_type": "hybrid",
+  "market": "cn_us",
+  "entrypoint": "scripts.build:run",
+  "data_source": "panda_data",
+  "result_types": ["buffett_research_candidate", "qualitative_review", "portfolio_target_weight", "portfolio_state_transition", "portfolio_summary", "strategy_validation", "universe_summary"],
+  "requires": ["skill-pandadata-api"],
+  "production_output": "../生产产物/数据库.parquet",
+  "default_universe": "all_a"
+}
