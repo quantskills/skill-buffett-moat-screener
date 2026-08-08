@@ -1,6 +1,16 @@
 ---
 name: build-Q44-production
 description: 当 agent 或 Alpha 需要读取 Q44 巴菲特软评分 BUILD 的已生成 A 股候选、组合状态、点时沪深 300、2010 固定 A 股名单或美股固定研究池验证结果时，使用此 skill；直接查询 Parquet，不重复执行全量计算。
+license: GPL-3.0-only
+metadata:
+  organization: QuantSkills
+  organization_url: https://github.com/quantskills
+  repository: skill-buffett-moat-screener
+  repository_url: https://github.com/quantskills/skill-buffett-moat-screener
+  project_type: skill
+  collection: fundamental-research
+  maintainer: dijia702
+  maintainer_url: https://github.com/dijia702
 tags: [quant, build, production, hybrid, cn_a_share, us_equity]
 ---
 

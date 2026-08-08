@@ -1,10 +1,38 @@
 ---
 name: build-Q44
 description: 当需要从 Panda Data 构建点时沪深 300 巴菲特式研究队列、运行 2010 起 A 股固定样本诊断、运行 2015 起美股固定研究池软评分回测、维护长期持仓状态并生成标准 Parquet 结果时，使用此 skill。该混合型 BUILD 可被 agent 或 Alpha 调用，不生成订单。
+license: GPL-3.0-only
+metadata:
+  organization: QuantSkills
+  organization_url: https://github.com/quantskills
+  repository: skill-buffett-moat-screener
+  repository_url: https://github.com/quantskills/skill-buffett-moat-screener
+  project_type: skill
+  collection: fundamental-research
+  creator: dijia702
+  creator_url: https://github.com/dijia702
+  maintainer: dijia702
+  maintainer_url: https://github.com/dijia702
 tags: [quant, build, development, hybrid, cn_a_share, us_equity, buffett]
+quantSkills:
+  project_type: skill
+  category: analyst
+  platforms: [claude-code, codex, cursor, hermes, openclaw]
+  status: community
+  requires: [skill-pandadata-api]
+  validation_level: runnable
+  maintainer_type: community
+  summary_zh: "基于点时数据的巴菲特式软评分、研究队列、持仓复核与多市场历史诊断。"
+  summary_en: "Point-in-time Buffett-style soft scoring, research ranking, portfolio review, and multi-market retrospective diagnostics."
 ---
 
 # Q44 A 股与美股巴菲特软评分长期持仓 BUILD
+
+## 维护与社区状态
+- 上游仓库：`quantskills/skill-buffett-moat-screener`
+- 创建者与维护者：[`dijia702`](https://github.com/dijia702)
+- 项目状态：QuantSkills Community Project，未经社区审核不得宣称官方、认证、验证、背书或保证可用于生产交易
+- 许可证：`GPL-3.0-only`
 
 ## 工具定位
 - 工具类型：混合型 BUILD（分析评估 + 结果生产）
@@ -159,3 +187,10 @@ Panda `get_us_daily` 对 2010-2014 返回空，且对 SPY/IVV/VOO/QQQ/DIA 无数
 - pandas / numpy / pyarrow / PyYAML / matplotlib
 
 接口字段与点时规则见 [references/api_guide.md](references/api_guide.md)，方法边界见 [references/buffett_methodology.md](references/buffett_methodology.md)。
+
+## 跨运行时入口
+- Claude Code：直接加载根目录 `SKILL.md`
+- Codex / OpenAI 兼容运行时：读取 `agents/openai.yaml`
+- Cursor：读取 `agents/cursor-rule.mdc`
+- Hermes / OpenClaw：原生加载本目录；无法发现时使用 `agents/portable-loader.md`
+- 所有适配器都必须回到本文件执行，不得复制或改写评分、组合和风险边界

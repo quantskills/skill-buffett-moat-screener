@@ -13,8 +13,12 @@ def test_quant_skills_v8_repository_contract():
     for name in (
         "SKILL.md",
         "README.md",
+        "README.en.md",
         "LICENSE",
         "skill.json",
+        "agents/openai.yaml",
+        "agents/cursor-rule.mdc",
+        "agents/portable-loader.md",
         "references/api_guide.md",
         "references/buffett_methodology.md",
         "scripts/build.py",
@@ -31,6 +35,15 @@ def test_quant_skills_v8_repository_contract():
     skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
     frontmatter = yaml.safe_load(skill_text.split("---", 2)[1])
     assert frontmatter["name"] == "build-Q44"
+    assert frontmatter["license"] == "GPL-3.0-only"
+    assert frontmatter["metadata"]["repository"] == "skill-buffett-moat-screener"
+    assert set(frontmatter["quantSkills"]["platforms"]) == {
+        "claude-code",
+        "codex",
+        "cursor",
+        "hermes",
+        "openclaw",
+    }
     assert "使用此 skill" in frontmatter["description"] or "Use when" in frontmatter["description"]
     assert "A 股" in skill_text
     assert "research_candidate" in skill_text
@@ -46,9 +59,37 @@ def test_manifest_and_runtime_requirements_are_current():
     assert manifest["name"] == "build-Q44"
     assert manifest["version"] == "9.4.0"
     assert manifest["entrypoint"] == "scripts.build:run"
+    assert manifest["license"] == "GPL-3.0-only"
+    assert manifest["metadata"]["organization"] == "QuantSkills"
+    assert set(manifest["platforms"]) == {
+        "claude-code",
+        "codex",
+        "cursor",
+        "hermes",
+        "openclaw",
+    }
 
     requirements = (ROOT / "requirements.txt").read_text(encoding="utf-8")
     assert "panda_data==0.0.12" in requirements
+
+
+def test_community_readmes_license_and_runtime_adapters():
+    readme_zh = (ROOT / "README.md").read_text(encoding="utf-8")
+    readme_en = (ROOT / "README.en.md").read_text(encoding="utf-8")
+    license_text = (ROOT / "LICENSE").read_text(encoding="utf-8")
+    openai = yaml.safe_load((ROOT / "agents" / "openai.yaml").read_text(encoding="utf-8"))
+    cursor = (ROOT / "agents" / "cursor-rule.mdc").read_text(encoding="utf-8")
+    portable = (ROOT / "agents" / "portable-loader.md").read_text(encoding="utf-8")
+
+    assert "[English](README.en.md)" in readme_zh
+    assert "QuantSkills Community Project" in readme_zh
+    assert "[简体中文](README.md)" in readme_en
+    assert "not official, certified, verified, endorsed" in readme_en
+    assert "GNU GENERAL PUBLIC LICENSE" in license_text
+    assert "Version 3, 29 June 2007" in license_text
+    assert openai["interface"]["default_prompt"].startswith("Use $build-Q44")
+    assert "SKILL.md" in cursor
+    assert "Hermes" in portable and "OpenClaw" in portable
 
 
 def test_removed_cross_market_and_experiment_products_are_absent():

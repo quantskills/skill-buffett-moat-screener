@@ -1,10 +1,12 @@
 # 🏰 巴菲特护城河研究 Skill
 
-**简体中文**
+**简体中文** | [English](README.en.md)
 
 > 一个面向 A 股与美股研究的巴菲特式投资分析 Skill：用点时数据识别高质量公司，给出可复核的研究建议、持仓复核、年度持仓记录与历史诊断。Q44 BUILD 只是其中负责计算与产出的执行组件，不是 Skill 的全部。
 
-**维护者**：[`QuantSkills`](https://github.com/quantskills)
+**项目状态**：QuantSkills Community Project（社区项目，未经审核不代表官方、认证、验证或背书）
+
+**创建者 / 维护者**：[`dijia702`](https://github.com/dijia702)
 
 <p align="center">
   <img alt="build" src="https://img.shields.io/badge/BUILD-Q44%20V9.4-1f6feb">
@@ -147,7 +149,9 @@ python scripts/backtest_runner.py --start 20170103 --end 20260724 `
 skill-buffett-moat-screener/
 ├── SKILL.md                 # BUILD 调用契约、方法与边界
 ├── README.md                # 中文项目说明
+├── README.en.md             # English project documentation
 ├── CONTRIBUTING.md          # 中文贡献规范
+├── agents/                  # Codex、Cursor、Hermes、OpenClaw 运行时适配器
 ├── scripts/                 # 数据、评分、组合、回测、报告与演示
 ├── references/              # Panda 接口映射与巴菲特方法说明
 ├── tests/                   # 合约、点时性、组合与演示测试
@@ -192,6 +196,18 @@ python scripts/test.py
 ```
 
 提交前请运行测试，并阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。不得提交 `output/`、缓存、浏览器状态或任何敏感凭证。
+
+## 🔌 跨运行时入口
+
+| 运行时 | 入口 |
+|---|---|
+| Claude Code | 直接加载根目录 `SKILL.md` |
+| Codex / OpenAI 兼容运行时 | `agents/openai.yaml` |
+| Cursor | `agents/cursor-rule.mdc` |
+| Hermes | `agents/portable-loader.md` |
+| OpenClaw | `agents/portable-loader.md` |
+
+所有适配器都以根目录 `SKILL.md` 为唯一方法契约，不复制评分或交易逻辑。
 
 ## ⚠️ 免责声明
 
