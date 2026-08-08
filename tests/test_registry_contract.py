@@ -108,7 +108,8 @@ def test_repository_does_not_embed_credentials():
 
 
 def test_shared_secure_worker_uses_v6_environment_contract():
-    worker = ROOT.parent / "secure_panda_worker.py"
+    worker = ROOT / "secure_panda_worker.py"
+    assert worker.is_file()
     text = worker.read_text(encoding="utf-8")
     assert '"symbols": ["600519.SH"]' in text
     assert "consume_environment_credentials" in text
