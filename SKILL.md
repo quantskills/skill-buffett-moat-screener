@@ -1,5 +1,5 @@
 ---
-name: build-Q44
+name: buffett-moat-screener
 description: 当需要从 Panda Data 构建点时沪深 300 巴菲特式研究队列、运行 2010 起 A 股固定样本诊断、运行 2015 起美股固定研究池软评分回测、维护长期持仓状态并生成标准 Parquet 结果时，使用此 skill。该混合型 BUILD 可被 agent 或 Alpha 调用，不生成订单。
 license: GPL-3.0-only
 metadata:
