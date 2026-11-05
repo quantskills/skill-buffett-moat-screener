@@ -70,7 +70,7 @@ def test_manifest_and_runtime_requirements_are_current():
     }
 
     requirements = (ROOT / "requirements.txt").read_text(encoding="utf-8")
-    assert "panda_data==0.0.12" in requirements
+    assert "panda_data==1.0.6" in requirements
 
 
 def test_community_readmes_license_and_runtime_adapters():

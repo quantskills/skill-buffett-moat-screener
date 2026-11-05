@@ -194,3 +194,7 @@ Panda `get_us_daily` 对 2010-2014 返回空，且对 SPY/IVV/VOO/QQQ/DIA 无数
 - Cursor：读取 `agents/cursor-rule.mdc`
 - Hermes / OpenClaw：原生加载本目录；无法发现时使用 `agents/portable-loader.md`
 - 所有适配器都必须回到本文件执行，不得复制或改写评分、组合和风险边界
+
+## Pandadata compatibility
+
+[Pandadata 1.0.6 compatibility](references/pandadata-compatibility.md) — exact SDK baseline, validation scope, and shared guidance for all supported agent runtimes.

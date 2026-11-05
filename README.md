@@ -216,3 +216,6 @@ python scripts/test.py
 ## 📄 许可证
 
 本项目以 [GPL-3.0-only](LICENSE) 发布。
+
+
+Pandadata 兼容维护：[abgyjaguo](https://github.com/abgyjaguo)，保留原项目作者署名。
