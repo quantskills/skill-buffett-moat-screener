@@ -125,3 +125,6 @@ Contributions should preserve point-in-time integrity, stable BUILD interfaces, 
 ## License
 
 Released under the GNU General Public License v3.0, SPDX identifier `GPL-3.0-only`. See [LICENSE](LICENSE).
+
+
+Pandadata compatibility maintenance: [abgyjaguo](https://github.com/abgyjaguo). Existing authorship is retained.
